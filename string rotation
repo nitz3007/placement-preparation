@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void leftrotate(string &s, int d)
+{
+    reverse(s.begin(), s.begin()+d);
+    reverse(s.begin()+d, s.end());
+    reverse(s.begin(), s.end());
+}
+
+void rightrotate(string &s, int d)
+{
+    
+    reverse(s.begin(), s.end());
+    reverse(s.begin(), s.begin()+d);
+    reverse(s.begin()+d, s.end());
+}
+int main() {
+	string s1,s2;
+	cin>>s1>>s2;
+	int d;
+	cin>>d;
+	leftrotate(s1,d);
+	cout<<s1<<endl;
+	rightrotate(s2,d);
+	cout<<s2<<endl;
+	return 0;
+}
