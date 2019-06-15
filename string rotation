@@ -1,3 +1,7 @@
+//niharika 16-05-19
+//reversal algorithm for string rotation
+
+
 #include <bits/stdc++.h>
 using namespace std;
 
