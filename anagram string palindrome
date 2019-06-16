@@ -1,0 +1,35 @@
+//Check if any anagram of a string is palindrome or not
+//Niharika 15-06-19
+
+
+
+
+#include <iostream>
+#include <string>
+#define no_of_char 256
+using namespace std;
+
+bool canformPalindrome(string str)
+{
+    int count[no_of_char]= {0};         //an array count and initialize all elements to 0
+    for(int i=0; str[i]; i++)
+        count[str[i]]++;                //increament count for each charater in the string to its corresponding element
+    int odd=0;
+    for(int i=0; i<no_of_char; i++)     //if count of characters is odd for more than one character then anagram is not palindrome
+    {
+        if(count[i] & 1)
+            odd++;
+        if(odd>0)
+            return false;
+    }
+    return true;
+}
+int main() {
+	string str;
+	cin>>str;
+	if(canformPalindrome)
+	    cout<<"yes";
+	else
+	    cout<<"no";
+	return 0;
+}
