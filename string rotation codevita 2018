@@ -37,7 +37,7 @@ void rotateright(char *str, int n, int d)
 
 bool compare(char arr1[], char arr2[])
 {
-    for(int i=0; i<max; i++)
+    for(int i=0; i<m; i++)
     {
         if(arr1[i] != arr2[i])
             return false;
@@ -65,7 +65,7 @@ void search(char *pat, char *txt, int m, int n)
     }
     if(compare(countp,counttw))
             count++;
-    if(count!=0)
+    if(count==0)
         cout<<"NO";
     else
         cout<<"YES";        
