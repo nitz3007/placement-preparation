@@ -1,0 +1,102 @@
+/*Rotate a given String in the specified direction by specified magnitude.
+After each rotation make a note of the first character of the rotated String, After all rotation are performed the accumulated first character as noted previously will form another string, say FIRSTCHARSTRING.
+Check If FIRSTCHARSTRING is an Anagram of any substring of the Original string.
+If yes print "YES" otherwise "NO". Input
+The first line contains the original string s. The second line contains a single integer q. The ith of the next q lines contains character d[i] denoting direction and integer r[i] denoting the magnitude.*/
+
+//niharika 17-06-2019 2:47
+
+#include <iostream>
+#include <cstring>
+#define max 256
+using namespace std;
+
+void reverseArray(char *str, int start, int end)
+{
+    while(start<end)
+    {
+        int temp= str[start];
+        str[start]= str[end];
+        str[end]= temp;
+        start++;
+        end--;
+    }
+}
+void rotateleft(char *str, int n, int d)
+{
+    reverseArray(str, 0, d-1);
+    reverseArray(str, d, n-1);
+    reverseArray(str, 0, n-1);
+}
+void rotateright(char *str, int n, int d)
+{
+    reverseArray(str, 0, n-1);
+    reverseArray(str, 0, d-1);
+    reverseArray(str, d, n-1);
+}
+
+bool compare(char arr1[], char arr2[])
+{
+    for(int i=0; i<max; i++)
+    {
+        if(arr1[i] != arr2[i])
+            return false;
+    }
+    return true;
+}
+
+void search(char *pat, char *txt, int m, int n)
+{
+    char countp[max]= {0};
+    char counttw[max]= {0};
+    int count=0;
+    for(int i=0; i<max; i++)
+    {
+        countp[pat[i]]++;
+        counttw[txt[i]]++;
+    }
+    
+    for(int i=m; i<n; i++)
+    {
+        if(compare(countp,counttw))
+           count++;
+        counttw[txt[i]]++;
+        counttw[txt[i-m]]--;
+    }
+    if(compare(countp,counttw))
+            count++;
+    if(count!=0)
+        cout<<"NO";
+    else
+        cout<<"YES";        
+    
+}
+
+int main() {
+	char s[30],qdir[10],pattern[10];
+	cin>>s;
+	int n= strlen(s);
+	int q;
+	cin>>q;
+	int qsteps[q];
+	for(int i=0; i<q; i++)
+	{
+	    cin>>qdir[i]>>qsteps[i];
+	}
+	for(int i=0; i<q; i++)
+	{
+	    if(qdir[i]=='L')
+	    {
+	        rotateleft(s,n,qsteps[i]);
+	        pattern[i]= s[0];
+	    }
+	    else if(qdir[i]== 'R')
+	    {
+	        rotateright(s,n,qsteps[i]);
+	        pattern[i]= s[0];
+	    }
+	        
+	}
+	search(pattern,s,q,n);
+	return 0;
+}
