@@ -1,0 +1,30 @@
+//NIharika Thakur 22/06/2019 1:24
+//converting a string of comma separated numbers into an array of integers
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+	string str= "3,5,4";
+	int slength= str.length();
+	int arr[slength];
+	int i,j=0,sum=0;
+	for(i=0; str[i] != '\0'; i++)
+	{
+	    if(str[i]==',')
+	        j++;
+	    else{
+	        arr[j]= str[i]-48;        //converting to integers(ascii value of 0 is 48)
+	    }
+	}
+	for(i=0; i<=j; i++ )
+	{
+	    cout<<arr[i]<<" ";
+	    sum += arr[i];
+	    
+	}
+	cout<<"\nsum= "<<sum<<endl;
+	return 0;
+}
