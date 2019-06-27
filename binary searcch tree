@@ -1,0 +1,149 @@
+#include <bits/stdc++.h>
+using namespace std;
+class Node
+{
+	public:
+		int data;
+		Node* left;
+		Node* right; 
+}*root;
+class bst
+{
+	public:
+	bst()
+	{
+		root=NULL;
+	}
+	Node* newNode(int element)
+	{
+		Node *temp= new(Node);
+		if(temp== NULL)
+		{
+			cout<<"memory not allocated";
+			return 0;
+		}
+		else
+		{
+			temp->data= element;
+			temp->left=NULL;
+			temp->right= NULL;
+			return temp;
+		}
+	}
+	Node* insertNode(Node *root,int element )
+	{
+		if(root==NULL)
+		{
+			return newNode(element);
+		}
+		else
+		{
+			if(element <= root->data)
+				root->left= insertNode(root->left, element);
+			else if(element > root->data)
+				root->right= insertNode(root->right, element);
+			return root;
+
+		}
+		
+	}
+	Node* search(Node *root, int key)
+	{
+		if(root==NULL|| root->data==key)
+			return root;
+		if(key < root->data)
+			return search(root->left, key);
+		
+		return search(root->right, key);
+	}
+
+	void preorder(Node *root)
+	{
+		if(root != NULL)
+		{
+			cout<<root->data<<" ";
+			preorder(root->left);
+			preorder(root->right);
+		}
+		
+	}
+    void postorder(Node *root)
+    {
+        if(root != NULL)
+        {
+            postorder(root->left);
+            postorder(root->right);
+            cout<<root->data<<" ";
+        }
+        
+    }
+    void inorder(Node *root)
+    {
+        if(root != NULL)
+        {
+            inorder(root->left);
+            cout<<root->data<<" ";
+            inorder(root->right);
+            
+        }
+        
+    }
+   
+    void find(int item, Node **par, Node **loc)
+    {
+        Node *ptr, *ptrsave;
+        if (root == NULL)
+        {
+            *loc = NULL;
+            *par = NULL;
+            return;
+        }
+        if (item == root->data)
+        {
+            *loc = root;
+            *par = NULL;
+            return;
+        }
+        if (item < root->data)
+            ptr = root->left;
+        else
+            ptr = root->right;
+        ptrsave = root;
+        while (ptr != NULL)
+        {
+            if (item == ptr->data)
+            {
+                *loc = ptr;
+                *par = ptrsave;
+                return;
+            }
+            ptrsave = ptr;
+            if (item < ptr->data)
+                ptr = ptr->left;
+    	else
+    	    ptr = ptr->right;
+        }
+        *loc = NULL;
+        *par = ptrsave;
+    }
+ 
+
+};
+int main()
+{
+	bst t1;
+	root= t1.insertNode(root,10);
+	t1.insertNode(root,5);
+	t1.insertNode(root,1);
+	t1.insertNode(root,6);
+	t1.insertNode(root,19);
+	t1.preorder(root);
+	cout<<"\n";
+	t1.postorder(root);
+	cout<<"\n";
+	t1.inorder(root);
+	cout<<"\n";
+	
+	return 0;
+
+}
