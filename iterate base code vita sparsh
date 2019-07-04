@@ -1,0 +1,68 @@
+#include <bits/stdc++.h>
+#include <sstream>  // for string streams 
+#include <string>  // for string 
+using namespace std;
+
+int iterate(string num)
+{
+  int len= num.length();
+    
+    int arr[len]={0};
+    int result=0,base=0,n1=0;
+    for(int i=0; num[i] != '\0'; i++ )
+    {
+      if(num[i] >= '0' && num[i] <= '9')
+        arr[i] = num[i] - 48;
+      else if(num[i] >='A' && num[i]<='Z')
+        arr[i] = num[i] - 55;
+    }
+
+    for(int i=0;i<len; i++)
+    {
+      n1= n1*10 + arr[i];
+    }
+    
+    for(int i=0; i<len; i++)
+    {
+      if(arr[i]>base)
+        base=arr[i];
+    }
+    base= base+1;
+
+    
+      for(int i=0; i<len; i++)
+      {
+        result= (result*base)+arr[i]; 
+        
+      }
+     if(result== n1)
+    {
+         return result;;
+    } 
+  
+      // declaring output string stream 
+      ostringstream str1; 
+
+      // Sending a number as a stream into output 
+      // string 
+      str1 << result; 
+
+      // the str() coverts number into string 
+      string num1 = str1.str();
+        
+      return iterate(num1);
+    
+    
+
+    
+    
+}
+int main()
+{
+    string num;
+    cin>>num;
+    iterate(num);
+    cout<<iterate(num)<<endl;
+    
+    
+}
