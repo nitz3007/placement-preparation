@@ -36,12 +36,12 @@ int main() {
         sum=0;
         for(int j=0; j<k; j++)
             sum += stripsum[i][j];
-        cout<<stripsum[i][0]<<" ";
+        cout<<sum<<" ";
         
         for(int j=1; j<n-k+1; j++)
         {
             sum += stripsum[i][j+k-1] - stripsum[i][j-1];
-            cout<<stripsum[i][j]<<" ";
+            cout<<sum<<" ";
             
         }
         cout<<endl;
