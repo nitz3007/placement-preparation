@@ -1,0 +1,50 @@
+//sum of all k*k sub matrix from a n*n matrix
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int n,k;
+    cin>>n>>k;
+    int a[n][n];
+    for(int i=0; i<n; i++)
+    {
+        for(int j=0; j<n; j++)
+        {
+            cin>>a[i][j];
+        }
+    }
+    if(k>n)
+        return 0;
+    int stripsum[n][n],sum;
+    for(int j=0; j<n; j++)
+    {
+        sum=0;
+        for(int i=0; i<k; i++)
+            sum += a[i][j];
+        stripsum[0][j]= sum;
+        
+        for(int i=1; i<n-k+1; i++)
+        {
+            sum += a[i+k-1][j]- a[i-1][j];
+            stripsum[i][j]=sum;
+        }
+    }
+    
+    for(int i=0; i<n-k+1; i++)
+    {
+        sum=0;
+        for(int j=0; j<k; j++)
+            sum += stripsum[i][j];
+        cout<<stripsum[i][0]<<" ";
+        
+        for(int j=1; j<n-k+1; j++)
+        {
+            sum += stripsum[i][j+k-1] - stripsum[i][j-1];
+            cout<<stripsum[i][j]<<" ";
+            
+        }
+        cout<<endl;
+    }
+	return 0;
+}
