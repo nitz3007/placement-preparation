@@ -1,0 +1,25 @@
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Codechef
+{
+    public static void main(String[] args) throws java.lang.Exception
+    {
+        Scanner sc= new Scanner(System.in);
+        int n= sc.nextInt();
+        int k= (2*n-2)/2;
+        for(int i=1; i<=n; i++)
+        {
+            for(int j=0; j<k; j++)
+                System.out.printf(" ");
+            k=k-1;
+            for(int j=0; j<i; j++)
+            {
+                System.out.printf("* ");
+            }
+            System.out.printf("\n");
+        }
+    }
+}
